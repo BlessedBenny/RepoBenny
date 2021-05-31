@@ -26,18 +26,25 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
 
-What aspect of security do load balancers protect?
+* What aspect of security do load balancers protect?
+
 Load Balancing ensures availability to the web-servers which is the availability aspect of security in regards to the CIA Triad. 
 
-What is the advantage of a jump box?
+* What is the advantage of a jump box?
+
 The main advantage of using a JumpBox is having one origination point for administrative tasks. This ultimately sets the JumpBox as a Secure Admin Workstation (SAW). In order to conduct administrative tasks administrators are required to access the JumpBox before accessing the other servers.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the logs and system traffic.
+
+What does Filebeat watch for?
+
 * Filebeat watches for log files/locations and collect log events.
+
+What does Metricbeat record?
+
 * Metricbeat records metrics and statistical data from the operating system and from services running on the server.
 
-The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
+The configuration details of each machine may be found below:
 
 | Name       | Function               | IP Address | Operating System         |  
 |------------|------------------------|------------|--------------------------|
@@ -52,10 +59,10 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the Jump Box Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-* Personal IP Address
+* Private/Personal IP Address
 
 Machines within the network can only be accessed by SSH.
-* The ELK-Server is only accessible by SSH from the JumpBox via web access from your Personal IP Address. 
+* The ELK-Server is only accessible by SSH from the JumpBox via web access from your Private/Personal IP Address. 
 
 A summary of the access policies in place can be found in the table below.
 
@@ -68,8 +75,7 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- The main advantage of automating the installation process is that we could deploy multiple servers easily and quickly without having to
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because we are able deploy multiple servers easily and quickly without having to
 physically touch each server.
 
 The playbook implements the following tasks:
@@ -93,7 +99,7 @@ We have installed the following Beats on these machines:
 
 These Beats allow us to collect the following information from each machine:
 * Filebeat watches for log files/locations and collect log events. (Filebeat: Lightweight Log Analysis &amp; Elasticsearch)
-* Metricbeat records metrics and statistical data from the operating system and from services running on the server (Metricbeat: Lightweight Shipper for Metrics)
+* Metricbeat records metrics and statistical data from the operating system and from services running on the server. (Metricbeat: Lightweight Shipper for Metrics)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -103,21 +109,21 @@ SSH into the control node and follow the steps below:
 - Update the configuration files to include the Private IP of the ELK-Server. Do this under the Elasticsearch and Kibana sections of the configurations files.
 - Run the playbook, and navigate to 20.41.102.105:5601/app/kibana (ELK-Server-Publicip) to check that the installation worked as expected.
 
-- Which file is the playbook? The playbook files are: 
+Which file is the playbook? The playbook files are: 
 * [install-elk.yml](C:\Users\benca\RepoBenny\Ansible\install-elk.yml) - Used to install the the ELK Server.
 * [filebeat-playbook.yml](C:\Users\benca\RepoBenny\Ansible\filebeat-playbook.yml) - Used to install and configure Filebeat on the Elk and DVWA servers.
 * [metricbeat-playbook.yml](C:\Users\benca\RepoBenny\Ansible\metricbeat-playbook.yml) - Used to install and configure Metricbeat on the Elk and DVWA servers.
 
-- Where do you copy it?
+Where do you copy it?
 * /etc/ansible/
 
-- Which file do you update to make Ansible run the playbook on a specific machine? 
+Which file do you update to make Ansible run the playbook on a specific machine? 
 * /etc/ansible/hosts.cfg
 
-- How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+How do I specify which machine to install the ELK server on versus which to install Filebeat on?
 * By updating the desired IP addresses and details required within the /etc/ansible/hosts file.
 
-- Which URL do you navigate to in order to check that the ELK server is running?
+Which URL do you navigate to in order to check that the ELK server is running?
 * http://publicip(elkserver):5601 For example - http://20.41.102.105:5601/app/kibana
 
 ### ELK-Server Ansible conifiguration run commands:
