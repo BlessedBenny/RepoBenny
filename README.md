@@ -73,14 +73,14 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 physically touch each server.
 
 The playbook implements the following tasks:
-- ... Install Docker.io and pip3
-- ... Increases Virtual Machine memory
-- ... Downloads and configures ELK Stack docker container
-- ... Sets published ports
+- Install Docker.io and pip3
+- Increases Virtual Machine memory
+- Downloads and configures ELK Stack docker container
+- Sets published ports
 
 The following screenshot displays the result of running `sudo docker ps` after successfully configuring the ELK instance.
 
-![](RepoBenny/Images/docker-ps.png)
+![](Images/docker-ps.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -121,14 +121,16 @@ SSH into the control node and follow the steps below:
 * http://publicip(elkserver):5601 For example - http://20.41.102.105:5601/app/kibana
 
 ### ELK-Server Ansible conifiguration run commands:
-1. ssh sysadmin@JumpBox(PrivateIP)
-2. sudo docker container list -a - Locate the ansible container
-3. sudo docker start <name of container> e.g.(tender_wiles) - To start the container
-4. sudo docker attach <name of container> e.g. (tender_wiles) - To attach the container
+1. ssh sysadmin@JumpBox (PrivateIP)
+2. sudo docker container list -a - Locate the ansible container.
+3. sudo docker start <name of container> e.g. (tender_wiles) - To start the container.
+4. sudo docker attach <name of container> e.g. (tender_wiles) - To attach the container.
 5. Navigate to playbook directory cd /etc/ansible/
 6. Run the playbook files - ansible-playbook elk-playbook.yml (Installs and Configures ELK-Server)
 7. Run the playbook files - ansible-playbook beats-playbook.yml (Installs and Configures Beats)
-8. Open a new browser on your personal machine and navigate to (ELK-Server-PublicIP:5601/app/kibana) - This will bring up Kibana web portal when the server is setup correctly.
+8. Open a new browser on your personal machine and navigate to (ELK-Server-PublicIP:5601/app/kibana)
+
+This will bring up Kibana web portal when the server is setup correctly.
 
 
 
